@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Transactions;
+using eShopSolucation.Data.Enums;
 
 namespace eShopSolucation.Data.Entities
 {
@@ -14,11 +14,10 @@ namespace eShopSolucation.Data.Entities
         public decimal Fee { set; get; }
         public string Result { set; get; }
         public string Message { set; get; }
-        public TransactionStatus Status { set; get; }
+        public TransactionStatus Status { set; get  ; }
         public string Provider { set; get; }
-
         public Guid UserId { get; set; }
-
         public AppUser AppUser { get; set; }
+
     }
 }

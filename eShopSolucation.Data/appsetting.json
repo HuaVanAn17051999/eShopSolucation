@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "eShopSolutionDb": "Data Source=localhost;Initial Catalog=eShopSolution;User Id=sa;Password=huavanan9x"
+  }
+}
