@@ -28,13 +28,19 @@ namespace eShopSolucation.Application.Catalog.Products
             _storageService = storageService;
         }
 
+        public  Task<int> AddImages(int productId, List<IFormFile> file)
+        {
+            //var product = await _db.Products.FindAsync(productId);
+            //return product;
+            throw new NotImplementedException();
+        }
+
         public async Task AddViewCount(int productId)
         {
             var product = await _db.Products.FindAsync(productId);
             product.ViewCount += 1;
             await _db.SaveChangesAsync();
         }
-
         public async Task<int> Create(ProductCreateRequest request)
         {
             var product = new Product()
@@ -75,8 +81,8 @@ namespace eShopSolucation.Application.Catalog.Products
                 }; 
             }
             _db.Products.Add(product);
-            return await _db.SaveChangesAsync();
-
+            await _db.SaveChangesAsync();
+            return product.Id;
         }
         public async Task<int> Delete(int productId)
         {
@@ -137,7 +143,29 @@ namespace eShopSolucation.Application.Catalog.Products
                 Items = data,
             };
             return pageResult;
+        }
+        public async Task<ProductViewModel> GetById(int productId, string languageId)
+        {
+            var product = await _db.Products.FindAsync(productId);
+            var productTranslation = await _db.ProductTranslations.FirstOrDefaultAsync(x => x.ProductId == productId && x.LanguageId == languageId);
 
+            var productViewMode = new ProductViewModel()
+            {
+                Id = product.Id,
+                DateCreated = product.DateCreated,
+                Description = productTranslation != null ? productTranslation.Description : null,
+                LanguageId = productTranslation.LanguageId,
+                Details = productTranslation != null ? productTranslation.Details : null,
+                Name = productTranslation != null ? productTranslation.Name : null,
+                OriginalPrice = product.OriginalPrice,
+                Price = product.Price,
+                SeoAlias = productTranslation != null ? productTranslation.SeoAlias : null,
+                SeoDescription = productTranslation != null ? productTranslation.SeoDescription : null,
+                SeoTitle = productTranslation != null ? productTranslation.SeoTitle : null,
+                Stock = product.Stock,
+                ViewCount = product.ViewCount
+            };
+            return productViewMode;
         }
         public async Task<int> Update(ProductUpdateRequest request)
         {
@@ -162,9 +190,7 @@ namespace eShopSolucation.Application.Catalog.Products
                 }
             }
             return await _db.SaveChangesAsync();
-
         }
-
         public async Task<bool> UpdatePrice(int productId, decimal newPrice)
         {
             var product = await _db.Products.FindAsync(productId);
@@ -172,9 +198,7 @@ namespace eShopSolucation.Application.Catalog.Products
             product.Price = newPrice;
 
             return await _db.SaveChangesAsync() > 0;
-
         }
-
         public async Task<bool> UpdateStock(int productId, int addQuantity)
         {
             var product = await _db.Products.FindAsync(productId);
@@ -187,7 +211,7 @@ namespace eShopSolucation.Application.Catalog.Products
         {
             var originalFileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
             var fileName = $"{Guid.NewGuid()}{Path.GetExtension(originalFileName)}";
-            await _storageService.SaveFileAsync(file.OpenReadStream(), fileName) ;
+            await _storageService.SaveFileAsync(file.OpenReadStream(), fileName);
             return fileName;
         }
     }

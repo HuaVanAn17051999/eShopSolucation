@@ -19,12 +19,13 @@ namespace eShopSolucation.Application.Catalog.Products
             _db = db;
         }
 
-        public async Task<List<ProductViewModel>> GetAll()
+        public async Task<List<ProductViewModel>> GetAll(string languageId)
         {
             var query = from p in _db.Products
                         join pt in _db.ProductTranslations on p.Id equals pt.ProductId
                         join pic in _db.ProductInCategories on p.Id equals pic.ProductId
                         join c in _db.Categories on pic.CategoryId equals c.Id
+                        where pt.LanguageId == languageId
                         select new { p, pt, pic };
 
             var data = await query.Select(x => new ProductViewModel()
@@ -55,6 +56,7 @@ namespace eShopSolucation.Application.Catalog.Products
                         join pt in _db.ProductTranslations on p.Id equals pt.ProductId
                         join pic in _db.ProductInCategories on p.Id equals pic.ProductId
                         join c in _db.Categories on pic.CategoryId equals c.Id
+                        where pt.LanguageId == request.LanguageId
                         select new { p, pt, pic };
             //2. filter
             if (request.CategoryId.HasValue && request.CategoryId.Value > 0)
