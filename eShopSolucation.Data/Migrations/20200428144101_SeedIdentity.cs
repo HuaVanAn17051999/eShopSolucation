@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace eShopSolucation.Data.Migrations
 {
-    public partial class Initial : Migration
+    public partial class SeedIdentity : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -433,6 +433,79 @@ namespace eShopSolucation.Data.Migrations
                         principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AppConfigs",
+                columns: new[] { "Key", "Value" },
+                values: new object[,]
+                {
+                    { "HomeTitle", "This is home page of eShopSolution" },
+                    { "HomeKeyword", "This is keyword of eShopSolution" },
+                    { "HomeDescription", "This is description  of eShopSolution" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AppRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Description", "Name", "NormalizedName" },
+                values: new object[] { new Guid("65653d6d-a1a6-44c6-aa99-eccd2a90bbbd"), "34b900e2-6d75-4801-9a6d-3cba00b3df55", "Administrator role", "admin", "admin" });
+
+            migrationBuilder.InsertData(
+                table: "AppUserRoles",
+                columns: new[] { "UserId", "RoleId" },
+                values: new object[] { new Guid("e8fb9b73-3a09-4eb8-a8c2-79fe14b70cd7"), new Guid("65653d6d-a1a6-44c6-aa99-eccd2a90bbbd") });
+
+            migrationBuilder.InsertData(
+                table: "AppUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Dob", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { new Guid("e8fb9b73-3a09-4eb8-a8c2-79fe14b70cd7"), 0, "50bfe66b-7f95-4889-bcca-1e92754e6902", new DateTime(2020, 1, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "anhuavan9x@gmail.com", true, "Hua", "An", false, null, "anhuavan9x@gmail.com", "admin", "AQAAAAEAACcQAAAAEC9QnoSAMSoqiCzuqdpnIFlh7pKtCKG/JBAAuzvhtNP0uggb2zpAQYUJJ5/e5TkMow==", null, false, "", false, "admin" });
+
+            migrationBuilder.InsertData(
+                table: "Categorys",
+                columns: new[] { "Id", "IsShowOnHome", "ParentId", "SortOrder", "Status" },
+                values: new object[,]
+                {
+                    { 1, true, null, 1, 1 },
+                    { 2, true, null, 2, 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Languages",
+                columns: new[] { "Id", "IsDefault", "Name" },
+                values: new object[,]
+                {
+                    { "vi-VN", true, "Tiếng Việt" },
+                    { "en-US", true, "English" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Products",
+                columns: new[] { "Id", "DateCreated", "OriginalPrice", "Price", "SeoAlias" },
+                values: new object[] { 1, new DateTime(2020, 4, 28, 21, 41, 0, 574, DateTimeKind.Local).AddTicks(4964), 100m, 200m, null });
+
+            migrationBuilder.InsertData(
+                table: "CategoryTranslations",
+                columns: new[] { "Id", "CategoryId", "LanguageId", "Name", "SeoAlias", "SeoDescription", "SeoTitle" },
+                values: new object[,]
+                {
+                    { 1, 1, "vi-VN", "Áo nam", "ao-nam", "Sản phẩm áo thời trang", "Sản phẩm áo thời trang" },
+                    { 3, 2, "vi-VN", "Áo nữ", "ao-nu", "Sản phẩm áo thời trang", "Sản phẩm áo thời trang" },
+                    { 2, 1, "en-US", "Men Shirt", "men-shirt", "Fashionable shirt products", "Fashionable shirt products" },
+                    { 4, 2, "en-US", "Women Shirt", "women-shirt", "Fashionable shirt products", "Fashionable shirt products" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ProductInCategories",
+                columns: new[] { "CategoryId", "ProductId" },
+                values: new object[] { 1, 1 });
+
+            migrationBuilder.InsertData(
+                table: "ProductTranslations",
+                columns: new[] { "Id", "Description", "Details", "LanguageId", "Name", "ProductId", "SeoAlias", "SeoDescription", "SeoTitle" },
+                values: new object[,]
+                {
+                    { 1, "", "Áo sơ mi nam trắng", "vi-VN", "Áo sơ mi nam trắng", 1, "ao-so-mi-nam-trang", "Áo sơ mi nam trắng", "Sản phẩm áo thời trang" },
+                    { 2, "", "Details of Product", "en-US", "Men's white shirts", 1, "men-is-white-shirts", "Men's white shirts", "Men's white shirts" }
                 });
 
             migrationBuilder.CreateIndex(

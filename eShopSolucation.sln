@@ -14,6 +14,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopSolucation.Data", "eSh
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopSolucation.Application", "eShopSolucation.Application\eShopSolucation.Application.csproj", "{D8E66BE4-D5A2-4BC0-8CB2-7BB4F41C4EF9}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopSolucation.Utilities", "Utilities\eShopSolucation.Utilities.csproj", "{8ED9EF6A-ACC2-4291-8183-C38A42D13857}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShopSolucation.ViewModels", "eShopSolucation.ViewModels\eShopSolucation.ViewModels.csproj", "{8F436DFE-155C-4A01-B114-2FE96359249E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopSolucation.BackendApi", "eShopSolucation.BackendApi\eShopSolucation.BackendApi.csproj", "{17E65605-28CF-4452-877D-4E685C00C660}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +38,18 @@ Global
 		{D8E66BE4-D5A2-4BC0-8CB2-7BB4F41C4EF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8E66BE4-D5A2-4BC0-8CB2-7BB4F41C4EF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8E66BE4-D5A2-4BC0-8CB2-7BB4F41C4EF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8ED9EF6A-ACC2-4291-8183-C38A42D13857}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8ED9EF6A-ACC2-4291-8183-C38A42D13857}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8ED9EF6A-ACC2-4291-8183-C38A42D13857}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8ED9EF6A-ACC2-4291-8183-C38A42D13857}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F436DFE-155C-4A01-B114-2FE96359249E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F436DFE-155C-4A01-B114-2FE96359249E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F436DFE-155C-4A01-B114-2FE96359249E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F436DFE-155C-4A01-B114-2FE96359249E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17E65605-28CF-4452-877D-4E685C00C660}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17E65605-28CF-4452-877D-4E685C00C660}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17E65605-28CF-4452-877D-4E685C00C660}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17E65605-28CF-4452-877D-4E685C00C660}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
