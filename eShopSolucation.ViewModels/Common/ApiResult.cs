@@ -8,6 +8,6 @@ namespace eShopSolucation.ViewModels.Common
     {
         public bool IsSuccessed { get; set; }
         public string Message { get; set; }
-        public T RessultObj {get;set;}
+        public T ResultObj {get;set;}
     }
 }
