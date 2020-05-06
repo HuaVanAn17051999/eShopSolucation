@@ -7,6 +7,8 @@ using eShopSolucation.Application.Common;
 using eShopSolucation.Application.System.Users;
 using eShopSolucation.Data.EF;
 using eShopSolucation.Data.Entities;
+using eShopSolucation.ViewModels.System.Users;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,6 +37,7 @@ namespace eShopSolucation.BackendApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddDbContext<EShopDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("eShopSolutionDb")));
             services.AddIdentity<AppUser, AppRole>()
@@ -44,13 +47,13 @@ namespace eShopSolucation.BackendApi
             //Declare DI
             //services.AddTransient: mỗi lần request IPublicProductService thì nó sẽ instance PublicProductService
             services.AddTransient<IStorageService, FileStorageService>();
-            services.AddTransient<IPublicProductService, PublicProductService>();
-            services.AddTransient<IManageProductService, ManageProductService>();
+            services.AddTransient<IProductService, ProductService>();
             services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
             services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
             services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
             services.AddTransient<IUserService, UserService>();
-            services.AddControllers();
+            services.AddControllers()
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
 
             services.AddSwaggerGen(c =>
             {
